@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rosé Ribbons</title>
+  <meta name="description" content="Rosé Ribbons - handmade jewellery." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#">
+        <span class="brand-mark">Rosé Ribbons</span>
+        <span class="brand-name">Rosé Ribbons</span>
+      </a>
+      <nav class="nav">
+        <a href="#shop">Shop</a>
+        <a href="#about">About</a>
+        <a href="#how">How to buy</a>
+        <a class="btn small" href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <h1>Handmade jewellery with personality ✨</h1>
+          <p class="lead">Bracelets, necklaces, and phone charms — made in small batches.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#shop">Browse the shop</a>
+            <a class="btn ghost" href="#contact">Request to buy</a>
+          </div>
+          <p class="tiny note">Parent-managed enquiries & payments for safety.</p>
+        </div>
+
+        <div class="hero-card">
+          <div class="badge">New</div>
+          <h3>Popular</h3>
+          <p>Chain Bracelets</p>
+          <p class="price">From £5</p>
+          <a class="btn small" href="#contact" data-product="Chain Bracelets">Request to buy</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="shop" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Shop</h2>
+          <p>Tap a product to send a request. We’ll confirm availability and price.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="img ph">Add photo</div>
+            <div class="card-body">
+              <h3>Chain Bracelets</h3>
+              <p class="muted">Simple, cute, and easy to wear.</p>
+              <div class="row">
+                <span class="price">From £5</span>
+                <a class="btn small" href="#contact" data-product="Chain Bracelets">Request</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="img ph">Add photo</div>
+            <div class="card-body">
+              <h3>Necklace</h3>
+              <p class="muted">Custom colours and charms available.</p>
+              <div class="row">
+                <span class="price">From £6</span>
+                <a class="btn small" href="#contact" data-product="Necklace">Request</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="img ph">Add photo</div>
+            <div class="card-body">
+              <h3>Phone Charms</h3>
+              <p class="muted">Perfect for phone cases and keyrings.</p>
+              <div class="row">
+                <span class="price">From £4</span>
+                <a class="btn small" href="#contact" data-product="Phone Charms">Request</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section alt">
+      <div class="container two-col">
+        <div>
+          <h2>About Rosé Ribbons</h2>
+          <p>
+            Rosé Ribbons is a small jewellery shop making bracelets, necklaces and phone charms.
+            Everything is handmade and designs change often.
+          </p>
+          <p class="muted">
+            This website is run with a parent/guardian for safety and help with orders.
+          </p>
+        </div>
+        <div class="callout">
+          <h3>Custom requests</h3>
+          <p>Want specific colours or a name charm? Add it to your message and we’ll reply.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section">
+      <div class="container">
+        <h2>How to buy</h2>
+        <ol class="steps">
+          <li>Choose a product and click <strong>Request</strong>.</li>
+          <li>Send your message (goes to a parent-managed email address).</li>
+          <li>We confirm price + postage/collection.</li>
+          <li>Payment is handled by a parent/guardian.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="contact" class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Contact / Request to buy</h2>
+          <p>Send a message with what you want, colour ideas, and whether you need postage.</p>
+        </div>
+
+        <form class="form" id="requestForm">
+          <label>
+            Product
+            <input name="product" id="productField" placeholder="e.g., Phone Charms" />
+          </label>
+          <label>
+            Your name
+            <input name="name" required placeholder="Your name" />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" required placeholder="you@example.com" />
+          </label>
+          <label>
+            Message
+            <textarea name="message" rows="5" required
+              placeholder="What would you like? Colours? Quantity? Postage or collection?"></textarea>
+          </label>
+
+          <button class="btn" type="submit">Open email to send</button>
+          <p class="tiny muted">No data is stored on this website.</p>
+        </form>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p class="muted">© <span id="year"></span> Rosé Ribbons</p>
+        <p class="tiny muted">Parent-managed site • No public phone number • No customer accounts</p>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.querySelectorAll('[data-product]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('productField').value = btn.getAttribute('data-product');
+      });
+    });
+
+    document.getElementById('requestForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(e.target);
+
+      const to = "PARENT_EMAIL_HERE@example.com"; // <-- change this
+      const subject = encodeURIComponent(`Rosé Ribbons request: ${data.get('product') || 'General'}`);
+      const body = encodeURIComponent(
+        `Product: ${data.get('product') || ''}\n` +
+        `Name: ${data.get('name')}\n` +
+        `Email: ${data.get('email')}\n\n` +
+        `${data.get('message')}\n`
+      );
+
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+
+</html>
